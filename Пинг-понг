@@ -1,0 +1,26 @@
+from pygame import *
+
+win_width = 700
+win_height = 500
+window = display.set_mode((win_width, win_height))
+display.set_caption("Пинг-понг")
+background = transform.scale(image.load("background.jpg"),(win_width, win_height))
+
+sprite1 = transform.scale(image.load('sprite1 (2).jpg'),(100, 100))
+sprite2 = transform.scale(image.load('sprite1 (3).jpg'),(100, 100))
+sprite3 = transform.scale(image.load('pingboll2.png'),(100, 100))
+
+game = True
+Clock = time.Clock()
+FPS = 60
+while game:
+    window.blit(background, (0,0))
+
+class GameSprite(sprite.Sprite):
+    def __init__(self, player_image, player_x, player_y, player_speed):
+        super().__init__()
+        self.image = transform.scale(image.load(player_image), (65, 65))
+        self.speed = player_speed
+        self.rect = self.image.get_rect()
+        self.rect.x = player_x
+        self.rect.y = player_y
